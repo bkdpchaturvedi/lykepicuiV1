@@ -1,0 +1,14 @@
+
+.imageclass{
+    width: 10%;
+    height: 10%;
+    
+}
+
+
+.title{
+    float: center;
+   word-wrap: normal;
+   text-align: center;
+ 
+}

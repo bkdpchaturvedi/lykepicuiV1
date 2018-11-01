@@ -201,4 +201,14 @@ export default class APIService {
         })
 
     }
+    async SearchFriends(searchtext) {
+        //  let userid=  this.getToken().user_id;
+        return this.fetch(`${this.domain}/user/searchusersbytext?text=${encodeURIComponent(searchtext)}`, {
+            method: 'GET'
+        }).then(res => {
+            //this.setToken(res.token) // Setting the token in localStorage
+            return Promise.resolve(res);
+        })
+
+    }
 }

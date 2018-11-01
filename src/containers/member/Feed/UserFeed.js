@@ -8,6 +8,7 @@ import MyVerticallyCenteredModal from "../Post/PopupWindow";
  import FollowCard from "../Followers/Follows";
 import APIService from '../../../utils/api/APIService';
 import ImageCard from './imageCard';
+import FollowModal from '../Followers/popupwidowforfollow';
 
 
 // const style = {
@@ -24,7 +25,8 @@ export default class UserFeed extends Component {
             isLoading: true,
             posts: [],
             userinfo: null,
-          
+            addPostModalShow:false,
+            addFollowModalShow:false
           };
 
     }
@@ -70,7 +72,7 @@ export default class UserFeed extends Component {
            
         </div>);
     }
-    renderPosts(modalClose) {
+    renderPosts(modalpostClose) {
         if(this.state.isLoading){ return(<div className="Loader" >
             <Glyphicon glyph="refresh" className="spinning " bsSize="large"/>
 
@@ -97,7 +99,7 @@ export default class UserFeed extends Component {
                                 <Col md={6} lg={8}> </Col>
                                 <Col md={3} lg={2}>
 
-                                    <Button > <Glyphicon glyph="glyphicon glyphicon-tag"> Follow</Glyphicon></Button>
+                                    {/* <Button onClick={() => this.setState({ addFollowModalShow: true })}> <Glyphicon glyph="glyphicon glyphicon-tag"> Follow</Glyphicon></Button> */}
                                 </Col>
 
                             </Row>
@@ -117,8 +119,11 @@ export default class UserFeed extends Component {
                 <Row>
                     <MyVerticallyCenteredModal
                         show={this.state.addPostModalShow}
-                        onHide={modalClose}
+                        onHide={modalpostClose}
                     />
+                </Row>
+                <Row>
+                   
                 </Row>
             </Grid>
         );}
@@ -151,11 +156,12 @@ export default class UserFeed extends Component {
 
     render() {
         //console.log(this.state.posts)
-        let modalClose = () => {this.setState({ addPostModalShow: false });
+        let modalpostClose = () => {this.setState({ addPostModalShow: false });
         this.fetchMorePosts()};
+      
         return (
             <div className="Home">
-                {this.props.isAuthenticated ? this.renderPosts(modalClose) : this.renderLander()}
+                {this.props.isAuthenticated ? this.renderPosts(modalpostClose) : this.renderLander()}
             </div>
         );
     }

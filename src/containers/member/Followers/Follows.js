@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import APIService from '../../../utils/api/APIService';
-import {ListGroup,ListGroupItem,Row,Col} from 'react-bootstrap';
+import {ListGroup,ListGroupItem,Row,Col,Button,Glyphicon} from 'react-bootstrap';
 import LoaderButton from '../../others/LoaderButton';
+import FollowModal from './popupwidowforfollow';
+
 
 export default class FollowCard extends Component {
 
@@ -11,7 +13,7 @@ export default class FollowCard extends Component {
         this.state = {
             isLoading: true,
             follows: [],
-            
+            addFollowModalShow:false
 
         };
     }
@@ -35,7 +37,7 @@ export default class FollowCard extends Component {
     async handleUnFollow(userId){
         this.setState({isLoading:true});
         try {
-            let cli=APIService();
+            let cli= new APIService();
             await cli.unFollow(userId);
             this.setState({isLoading:false});
             await this.fetchdata();
@@ -45,12 +47,15 @@ export default class FollowCard extends Component {
 
 
     }
-    render() {
+    renderfollowers() {
         const tmpfollows=this.state.follows;
+
+
         return (
           
             
             tmpfollows.length>0?
+            
             <Row>
                 <Col>
                 <ListGroup>
@@ -83,5 +88,27 @@ export default class FollowCard extends Component {
                 </Col>
             </Row>
         )
+    }
+    renderForm(){
+        let modalfollowClose = () => {this.setState({ addFollowModalShow: false });
+        this.fetchdata()};
+        return (
+            <Row>
+                 <Button onClick={() => this.setState({ addFollowModalShow: true })}> <Glyphicon glyph="glyphicon glyphicon-tag"> Follow</Glyphicon></Button>
+                 <FollowModal show={this.state.addFollowModalShow}
+                        onHide={modalfollowClose} />      
+            </Row>
+            
+
+        );
+    }
+    render(){
+        return(
+            <Row>
+                {this.renderForm()}
+                {this.renderfollowers()}
+            </Row>
+
+        );
     }
 }

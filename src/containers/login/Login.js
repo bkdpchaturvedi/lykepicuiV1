@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
 import LoaderButton from "../others/LoaderButton";
 import APIService from "../../utils/api/APIService";
@@ -38,10 +38,14 @@ export default class Login extends Component {
       if( await APIServicecli.getToken())
       {
         this.props.userHasAuthenticated(true);
+        this.props.history.push("/member");
+      }
+      else{
+        this.props.userHasAuthenticated(false);
         this.props.history.push("/");
       }
 
-    
+      this.setState({ isLoading: false });
     }
     catch (e) {
       alert(e.message);

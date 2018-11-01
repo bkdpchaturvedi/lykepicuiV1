@@ -36,6 +36,7 @@ class App extends Component {
   }
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
+    this.props.history.push("/member");
   }
   handleLogout = event => {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image,Thumbnail,Grid,Label,Row,Col} from "react-bootstrap";
+import {Image,Row,Col} from "react-bootstrap";
 import './UserInfo.css';
 import defaultimage from './default-image.jpg';
 export default class UserCard extends Component {
@@ -7,11 +7,13 @@ export default class UserCard extends Component {
      super(props);
      console.log(props);
 
-
+     this.state = {
+      isLoading: true
+      }
    }
     
   render() {
-    
+  
     return (
         !(this.props.userdata==null) ?
 
@@ -43,6 +45,6 @@ export default class UserCard extends Component {
 
       
 
-    )
+    );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  HelpBlock,
+ 
   FormGroup,
   FormControl,
   ControlLabel
@@ -53,7 +53,8 @@ export default class Signup extends Component {
         const client=new APIService();
        await client.signup(this.state.email,this.state.email,this.state.password,this.state.confirmPassword,this.state.profilePicture)
        await client.login(this.state.email,this.state.password);
-        this.props.userHasAuthenticated(true);
+       this.setState({ isLoading: false });
+       // this.props.userHasAuthenticated(true);
         this.props.history.push("/");
     }
     catch (e) {

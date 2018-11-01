@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import APIService from '../../../utils/api/APIService';
-import {ListGroup,ListGroupItem,Row,Col,FormControl,FormGroup,ControlLabel} from 'react-bootstrap';
+import {ListGroup,ListGroupItem,Row,Col} from 'react-bootstrap';
 import LoaderButton from '../../others/LoaderButton';
 
 export default class FollowCard extends Component {
@@ -48,13 +48,8 @@ export default class FollowCard extends Component {
     render() {
         const tmpfollows=this.state.follows;
         return (
-           ( <Row>
-               <Col>
-              
-               </Col>
-
-           </Row>)
-            (
+          
+            
             tmpfollows.length>0?
             <Row>
                 <Col>
@@ -86,7 +81,7 @@ export default class FollowCard extends Component {
                 <ListGroupItem header="Not Following ">0</ListGroupItem>
                 </ListGroup>
                 </Col>
-            </Row>)
+            </Row>
         )
     }
 }

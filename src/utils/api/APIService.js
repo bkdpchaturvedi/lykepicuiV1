@@ -1,16 +1,13 @@
 import config from "../../containers/config";
 export default class APIService {
     constructor() {
-
-
-
         this.domain = config.API_URL; // API server domain
         this.fetch = this.fetch.bind(this) // React binding stuff
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
     }
 
-    login(username, password) {
+    async login(username, password) {
         const grant_type = "password";
         const url = `${encodeURIComponent("grant_type")}=${encodeURIComponent(grant_type)}&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
@@ -26,20 +23,7 @@ export default class APIService {
             return Promise.resolve(res);
         })
     }
-    getBase64(file, cb) {
-        let document = "";
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        document = reader.result;
-        reader.onload = function () {
-            cb(reader.result)
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-
-        return document;
-    }
+   
     async signup(username, email, password, confirmPassword, pfPicture) {
         //const grant_type="password";
         let profilePicture = pfPicture.base64;
@@ -99,7 +83,7 @@ export default class APIService {
         localStorage.removeItem('id_token');
     }
 
-    getProfile() {
+    async getProfile() {
         // Using jwt-decode npm package to decode the token
         // return decode(this.getToken());
         const userid = this.getToken().user_id;
@@ -110,7 +94,17 @@ export default class APIService {
             return Promise.resolve(res);
         })
     }
-
+    async getpostProfile(userid) {
+        // Using jwt-decode npm package to decode the token
+        // return decode(this.getToken());
+       
+        return this.fetch(`${this.domain}/user/getuser?userid=${encodeURIComponent(userid)}`, {
+            method: 'GET'
+        }).then(res => {
+            //this.setToken(res.token) // Setting the token in localStorage
+            return Promise.resolve(res);
+        })
+    }
 
     fetch(url, options) {
         // performs api calls sending the required authentication headers

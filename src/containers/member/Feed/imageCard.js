@@ -100,7 +100,7 @@ class ImageCard extends Component {
             return (
 
 
-                <Panel bsStyle="primary" >
+                <Panel>
                     <Panel.Body>
                         <p style={leftcardstyle}>
                            

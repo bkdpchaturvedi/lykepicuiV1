@@ -110,9 +110,7 @@ export default class APIService {
         // performs api calls sending the required authentication headers
         const headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-
+            'Content-Type': 'application/json'
         }
 
         // Setting Authorization header
@@ -175,6 +173,7 @@ export default class APIService {
         return this.fetch(`${this.domain}/user/GetFollowerList?userId=${encodeURIComponent(userid)}`, {
             method: 'GET'
         }).then(res => {
+            console.log(res)
             //this.setToken(res.token) // Setting the token in localStorage
             return Promise.resolve(res);
         })
@@ -206,6 +205,7 @@ export default class APIService {
         return this.fetch(`${this.domain}/user/searchusersbytext?text=${encodeURIComponent(searchtext)}`, {
             method: 'GET'
         }).then(res => {
+            console.log(res)
             //this.setToken(res.token) // Setting the token in localStorage
             return Promise.resolve(res);
         })

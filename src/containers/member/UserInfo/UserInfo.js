@@ -1,49 +1,53 @@
 import React, { Component } from 'react';
-import {Image,Row,Col} from "react-bootstrap";
+import { Image, Row, Col, Panel } from "react-bootstrap";
 import './UserInfo.css';
 import defaultimage from './default-image.jpg';
 export default class UserCard extends Component {
-   constructor(props){
-     super(props);
-//     console.log(props);
+  constructor(props) {
+    super(props);
+    //     console.log(props);
 
-     this.state = {
+    this.state = {
       isLoading: true
-      }
-   }
-    
+    }
+  }
+
   render() {
-  
+
     return (
-        !(this.props.userdata==null) ?
+      !(this.props.userdata == null) ?
 
         <Row >
           <Col >
-          
-            <Image className="title"  src={
-              this.props.userdata.profilePicture == null?
-              defaultimage
-              :this.props.userdata.profilePicture
-              } responsive circle  >
-            
-            </Image>
-            
-            <small className="title"> {this.props.userdata.userName}</small>
+            <Panel>
+              <Panel.Heading>Profile</Panel.Heading>
+              <Panel.Body>
+                <Image className="imgclass" src={
+                this.props.userdata.profilePicture == null ?
+                  defaultimage
+                  : this.props.userdata.profilePicture
+              } circle  >
+
+              </Image></Panel.Body>
+              <Panel.Body>
+                <small> {this.props.userdata.userName}</small></Panel.Body>
+            </Panel>
+
           </Col>
-          
-         
-      </Row>
 
-      : 
-      <Row>
-      <Col xs={6} md={4}>
-      No Data
+
+        </Row>
+
+        :
+        <Row>
+          <Col xs={6} md={4}>
+            No Data
       </Col>
-      </Row>
-     
+        </Row>
 
 
-      
+
+
 
     );
   }

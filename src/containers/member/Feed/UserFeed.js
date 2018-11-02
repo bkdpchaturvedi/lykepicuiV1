@@ -78,11 +78,13 @@ export default class UserFeed extends Component {
 
         </div>)} else{
         return (
-            <Grid  >
+            <Grid  fluid>
                 <Row>
                     <Col sm={4} md={5} lg={4}>
                         <Grid fluid>
+                        
                             <UserCard userdata={this.state.userinfo} />
+                               
                             <FollowCard ></FollowCard>
 
                         </Grid>

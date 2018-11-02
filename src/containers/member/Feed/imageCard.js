@@ -91,6 +91,8 @@ class ImageCard extends Component {
 
     render() {
 //        console.log(this.state.posteduserProfile)
+        var desc = "{\"__html\":\"<p style={leftcardstyle} > "+this.props.description+"</p>\"}"
+        var descriptionField = JSON.parse(desc)
         if (this.state.isLoading) {
             return (<div className="Loader" >
                 <Glyphicon glyph="refresh" className="spinning " bsSize="large" />
@@ -108,10 +110,10 @@ class ImageCard extends Component {
                             
                         </p>
                         <br></br>
-                        <p style={leftcardstyle} >
-                        
-                            {this.props.description}
-                        </p>
+
+
+                            <div dangerouslySetInnerHTML= {descriptionField}/>
+
                         <p style={rightcardstyle} >
                         
                         <i>Created On: </i>

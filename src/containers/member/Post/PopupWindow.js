@@ -30,6 +30,7 @@ export default class MyVerticallyCenteredModal extends Component {
         this.setState({
           [event.target.id]: event.target.value
         });
+        console.log(event.target.value)
       }
     
       handleFileChange = event => {

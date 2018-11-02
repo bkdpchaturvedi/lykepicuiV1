@@ -26,6 +26,7 @@ export default class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
+    console.log(event.target.value)
   }
 
   handleSubmit =async event => {

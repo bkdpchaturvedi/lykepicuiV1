@@ -26,7 +26,8 @@ export default class APIService {
    
     async signup(username, email, password, confirmPassword, pfPicture) {
         //const grant_type="password";
-        let profilePicture = pfPicture.base64;
+        let profilePicture = pfPicture;
+        console.log(profilePicture);
         //    await this.getBase64(pfPicture,(result) => {
         //         profilePicture = result;
         //    });
